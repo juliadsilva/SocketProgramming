@@ -3,7 +3,7 @@
 import socket 
 import select 
 import sys 
-from threading import *
+#from thread import *
   
 #Configure inicialmente o soquete 
 #socket.SOCK_STREAM - TCP
@@ -11,9 +11,9 @@ server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1) 
 
 IP_address = "127.0.0.1"
-Port = 1234 
+PORT = 1234 
   
-server.bind((IP_address, Port)) 
+server.bind((IP_address, PORT)) 
 server.listen(100) 
   
 list_of_clients = [] 
@@ -73,7 +73,7 @@ while True:
     print (addr[0] + " conectado")
   
     #cria um tópico individual para cada usuário que conecta
-    start_new_thread(clientthread,(servidor,addr))     
+    #start_new_thread(clientthread,(servidor,addr))     
   
 servidor.close() 
 server.close() 

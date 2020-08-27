@@ -1,4 +1,4 @@
-#Programa Python para implementar o lado do cliente na sala de chat.
+#Programa Python para implementar o lado do servere na sala de chat.
 import socket 
 import select 
 import sys 
@@ -6,9 +6,8 @@ import sys
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM) 
 
 IP_address = "127.0.0.1"
-Port = 1234 
-
-server.connect((IP_address, Port)) 
+PORT = 1234 
+server.connect((IP_address, PORT)) 
   
 while True: 
   
@@ -36,5 +35,4 @@ while True:
             sys.stdout.write("<Voce>") 
             sys.stdout.write(message) 
             sys.stdout.flush() 
-
 server.close() 
