@@ -1,6 +1,6 @@
 #!/usr/bin/env  python
 #Programa de chat para atendimento de uma pizzaria - Servidor
-#Julia Daniele Moreira - 1714
+#Julia Daniele  - 1714
 
 import socket
 import select

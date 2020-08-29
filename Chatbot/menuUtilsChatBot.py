@@ -68,7 +68,7 @@ def pedidoCancelado(message, numero):
     return message
 
 def menuFinal(message):
-    mensagem = ("\nObrigada! Tenha um bom dia.")
+    mensagem = ("\nObrigada!")
     message["data"] = mensagem.encode("utf-8")
     message["header"] = f"{len(message):<{HEADER_LENGTH}}".encode("utf-8")
     return message
