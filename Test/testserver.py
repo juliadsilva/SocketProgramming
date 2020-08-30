@@ -10,7 +10,6 @@ HEADER_LENGTH = 100
 IP = "127.0.0.1"
 PORT = 8080
 
-
 #Configure inicialmente o soquete 
 #socket.SOCK_STREAM - TCP
 server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -42,7 +41,6 @@ def receive_message(client_socket):
     except:
         print("[ERROR] A mensagem não pode ser lida")
         return False
-
 
 if __name__ == "__main__":
     while True:
@@ -85,12 +83,12 @@ if __name__ == "__main__":
                             message["data"] = mensagem.encode("utf-8") 
                             message["header"] = f"{len(message):<{HEADER_LENGTH}}".encode("utf-8")      
                             client_socket.send(user["header"] + user["data"] + message["header"] + message["data"])  
-                            STEP = 2; 
+                            STEP = 2
    
                         elif STEP == 2:                  
                             questaoum = mensagemrecebida;
-
-                            mensagem = ("Questão 02: A menor quantidade de informações binária chama-se: \na) Bit \nb) Byte \nc) Microbyte \nd) Minibitfoi")
+                            
+                            mensagem = ("Questão 02: A menor quantidade de informações binária chama-se: \na) Bit \nb) Byte \nc) Microbyte \nd) Minibit")
                             message["data"] = mensagem.encode("utf-8")
                             message["header"] = f"{len(message):<{HEADER_LENGTH}}".encode("utf-8")      
                             client_socket.send(user["header"] + user["data"] + message["header"] + message["data"]) 
@@ -100,20 +98,20 @@ if __name__ == "__main__":
 
                             STEP = 4
                             questaodois = mensagemrecebida;
-
+            
                             mensagem = ("Respostas:\nQuestão 01: Sua resposta foi: " + questaoum + ".")
                             message["data"] = mensagem.encode("utf-8")
                             message["header"] = f"{len(message):<{HEADER_LENGTH}}".encode("utf-8")      
                             client_socket.send(user["header"] + user["data"] + message["header"] + message["data"]) 
 
                             if questaoum == "b" or questaoum == "B":
-                                mensagem = ("Você acertou. Parabêns! \nDigite 'ok' para continuar.")
+                                mensagem = ("Você acertou. Parabêns! \nDigite <ok> para continuar.")
                                 message["data"] = mensagem.encode("utf-8")
                                 message["header"] = f"{len(message):<{HEADER_LENGTH}}".encode("utf-8")      
                                 client_socket.send(user["header"] + user["data"] + message["header"] + message["data"]) 
                             
                             else:
-                                mensagem = ("Resposta errada.\nA alternativa correta era b) Hardware.\nDigite 'ok' para continuar.")
+                                mensagem = ("Resposta errada.\nA alternativa correta era b) Hardware.\nDigite <ok> para continuar.")
                                 message["data"] = mensagem.encode("utf-8")
                                 message["header"] = f"{len(message):<{HEADER_LENGTH}}".encode("utf-8")      
                                 client_socket.send(user["header"] + user["data"] + message["header"] + message["data"]) 
@@ -132,7 +130,7 @@ if __name__ == "__main__":
                                 client_socket.send(user["header"] + user["data"] + message["header"] + message["data"]) 
                             
                             else:
-                                mensagem = ("Resposta errada. \n A alternativa correta era a) Bit.")
+                                mensagem = ("Resposta errada. \nA alternativa correta era a) Bit.")
                                 message["data"] = mensagem.encode("utf-8")
                                 message["header"] = f"{len(message):<{HEADER_LENGTH}}".encode("utf-8")      
                                 client_socket.send(user["header"] + user["data"] + message["header"] + message["data"]) 
