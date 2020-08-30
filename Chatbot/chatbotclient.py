@@ -13,7 +13,7 @@ HEADER_LENGTH = 100
 
 IP = "127.0.0.1"
 PORT = 8080
-my_username = input("Username: ")
+my_username = input("Nome: ")
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -76,11 +76,11 @@ class Reciever(Thread):
 
             except IOError as e:
                 if e.errno != errno.EAGAIN and e.errno != errno.EWOULDBLOCK:
-                    print('Reading error: {}'.format(str(e)))
+                    print('Erro: {}'.format(str(e)))
                     sys.exit()
 
             except Exception as e:
-                print('Reading error: '.format(str(e)))
+                print('Erro: '.format(str(e)))
                 sys.exit()
 
 

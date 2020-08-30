@@ -13,7 +13,8 @@ HEADER_LENGTH = 100
 
 IP = "127.0.0.1"
 PORT = 8080
-my_username = input("Username: ")
+my_username = input("Nome: ")
+print('O questionario possui duas questões de multipla escolha. Envie somente a resposta desejada. \nDigite <Iniciar> para começar o teste.')
 
 client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -34,7 +35,7 @@ class Sender(Thread):
         while True:
             
             #Lendo a mensagem a ser enviada
-            message = input(f'{my_username} > ')
+            message = input()
 
             #Se houver messagem
             if message:
@@ -63,26 +64,22 @@ class Reciever(Thread):
                         print('Conexão fechada pelo servidor')
                         sys.exit()
 
-                    
-
                     #Recebendo a mensagem
                     message_header = client_socket.recv(HEADER_LENGTH)
                     message_length = 10000 #tamanho da msg recebida
                     message = client_socket.recv(message_length).decode('utf-8')
 
                     #Mostrando a mensagem com o nome do servidor
-                    print(f'\r{"Amanda"} > {message}')
-                    print(f'{my_username} > ')
+                    print(f'{message}')
 
             except IOError as e:
                 if e.errno != errno.EAGAIN and e.errno != errno.EWOULDBLOCK:
-                    print('Reading error: {}'.format(str(e)))
+                    print('Erro: {}'.format(str(e)))
                     sys.exit()
 
             except Exception as e:
-                print('Reading error: '.format(str(e)))
+                print('Erro: '.format(str(e)))
                 sys.exit()
-
 
 if __name__ == "__main__":
     sender = Sender()
