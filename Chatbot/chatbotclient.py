@@ -61,9 +61,7 @@ class Reciever(Thread):
                     #Se não recebemos dados, o servidor fecha a conexão
                     if not len(username_header):
                         print('Conexão fechada pelo servidor')
-                        sys.exit()
-
-                    
+                        sys.exit()                   
 
                     #Recebendo a mensagem
                     message_header = client_socket.recv(HEADER_LENGTH)
@@ -71,8 +69,8 @@ class Reciever(Thread):
                     message = client_socket.recv(message_length).decode('utf-8')
 
                     #Mostrando a mensagem com o nome do servidor
-                    print(f'\r{"Amanda"} > {message}')
-                    print(f'{my_username} > ')
+                    print(f'\r{"Amanda"} >{message}')
+                    print(f'{my_username} >')
 
             except IOError as e:
                 if e.errno != errno.EAGAIN and e.errno != errno.EWOULDBLOCK:
@@ -82,7 +80,6 @@ class Reciever(Thread):
             except Exception as e:
                 print('Erro: '.format(str(e)))
                 sys.exit()
-
 
 if __name__ == "__main__":
     sender = Sender()

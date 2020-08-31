@@ -76,11 +76,10 @@ if __name__ == "__main__":
                     sockets_list.remove(notified_socket)
                     del clients[notified_socket]
                     continue
-
                
                 user = clients[notified_socket]
 
-                #armazena amensagem recebida para ser comparada
+                #Armazena a mensagem recebida para ser comparada
                 mensagemrecebida = str(message["data"].decode("utf-8"))
 
                 print(f'Mensagem recebida de {user["data"].decode("utf-8")}: {message["data"].decode("utf-8")}')
@@ -97,11 +96,11 @@ if __name__ == "__main__":
 
                         #Segundo passo: tratamento da opção do primeiro menu
                         elif STEP == 2:
-                            ifmensagemrecebida == "1": 
+                            if mensagemrecebida == "1": 
                                 #Realizar o pedido 
                                 send_message(client_socket, user, menuUtilsChatBot.pizzaOuBebida(message))
                                 STEP = 3 
-                            elifmensagemrecebida == "2":
+                            elif mensagemrecebida == "2":
                                 #Cancelar o pedido
                                 send_message(client_socket, user, menuUtilsChatBot.informeCodigoPedido(message))
                                 STEP = 8 
@@ -111,16 +110,17 @@ if __name__ == "__main__":
 
                         #STEP = 3 -->  Realizar o pedido
                         elif STEP == 3:
-                            ifmensagemrecebida == "1":
+                            if mensagemrecebida == "1":
                                 send_message(client_socket, user, menuUtilsChatBot.opcaoPizza(message))
                                 STEP = 4
-                            elifmensagemrecebida == "2":
+                            elif mensagemrecebida == "2":
                                send_message(client_socket, user, menuUtilsChatBot.opcaoBebida(message))
                                STEP = 5
+
                         #STEP = 4 --> Confimar o pedido de pizza
                         elif STEP == 4:
                             pizza = Pizza()
-                            opcao = int(messagemrecebida) - 1 
+                            opcao = int(mensagemrecebida) - 1 
 
                             if opcao >= 0 and opcao <= 2:
                                 pizza.opcao = PIZZAS_DISPONIVEIS[opcao]
@@ -129,10 +129,11 @@ if __name__ == "__main__":
                             else:
                                 send_message(client_socket, user, menuUtilsChatBot.opcaoInvalida(message))
                                 STEP = 1
+
                         #STEP = 5 --> Confimar o pedido de bebidas
                         elif STEP == 5:
                             bebida = Bebida()
-                            opcao = int(messagemrecebida) - 1
+                            opcao = int(mensagemrecebida) - 1
 
                             if opcao >= 0 and opcao <= 2:
                                 bebida.opcao = BEBIDAS_DISPONIVEIS[opcao]
@@ -141,21 +142,24 @@ if __name__ == "__main__":
                             else:
                                 send_message(client_socket, user, menuUtilsChatBot.opcaoInvalida(message))
                                 STEP = 1
+
                         #STEP = 6 --> Pedido realizado
                         elif STEP == 6:
-                            ifmensagemrecebida == "1": 
+                            if mensagemrecebida == "1": 
                                 send_message(client_socket,user,menuUtilsChatBot.pedidoConfirmado(message))
                                 STEP = 7
-                            elifmensagemrecebida == "2": 
+                            elif mensagemrecebida == "2": 
                                 send_message(client_socket,user,menuUtilsChatBot.repeteMenu(message))
                                 STEP = 2
                             else:
                                 send_message(client_socket, user, menuUtilsChatBot.opcaoInvalida(message))
                                 STEP = 1
+
                         #STEP = 7 -- Confirmar dados do cliete 
                         elif STEP == 7:
                            send_message(client_socket, user, menuUtilsChatBot.pedidoEntregue(message))     
                            STEP = 0
+
                         #Cancelar o pedido
                         elif STEP == 8:
                             send_message(client_socket, user, menuUtilsChatBot.pedidoCancelado(message,mensagemrecebida))
@@ -164,7 +168,6 @@ if __name__ == "__main__":
                             send_message(client_socket, user, menuUtilsChatBot.menuFinal(message))
                             sockets_list.remove(notified_socket)
                             del clients[notified_socket]
-
 
         for notified_socket in exception_sockets:
             sockets_list.remove(notified_socket)

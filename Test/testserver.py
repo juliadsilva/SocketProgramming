@@ -1,5 +1,5 @@
 #!/usr/bin/env  python
-#Programa questionario
+#Programa para realizar teste de multipla escolha - Cliente
 #Julia Daniele Moreira - 1714
 
 import socket
@@ -79,7 +79,7 @@ if __name__ == "__main__":
                         #Primeira questão
                         if STEP == 1:
                            
-                            mensagem = ("Questão 01: O termo técnico para designar a parte fisica do computador é: \na) Software \nb) Hardware \nc) Firmware \nd) Middleware")
+                            mensagem = ("\nQuestão 01: O termo técnico para designar a parte fisica do computador é: \na) Software \nb) Hardware \nc) Firmware \nd) Middleware")
                             message["data"] = mensagem.encode("utf-8") 
                             message["header"] = f"{len(message):<{HEADER_LENGTH}}".encode("utf-8")      
                             client_socket.send(user["header"] + user["data"] + message["header"] + message["data"])  
@@ -88,7 +88,7 @@ if __name__ == "__main__":
                         elif STEP == 2:                  
                             questaoum = mensagemrecebida;
                             
-                            mensagem = ("Questão 02: A menor quantidade de informações binária chama-se: \na) Bit \nb) Byte \nc) Microbyte \nd) Minibit")
+                            mensagem = ("\nQuestão 02: A menor quantidade de informações binária chama-se: \na) Bit \nb) Byte \nc) Microbyte \nd) Minibit")
                             message["data"] = mensagem.encode("utf-8")
                             message["header"] = f"{len(message):<{HEADER_LENGTH}}".encode("utf-8")      
                             client_socket.send(user["header"] + user["data"] + message["header"] + message["data"]) 
@@ -99,38 +99,38 @@ if __name__ == "__main__":
                             STEP = 4
                             questaodois = mensagemrecebida;
             
-                            mensagem = ("Respostas:\nQuestão 01: Sua resposta foi: " + questaoum + ".")
+                            mensagem = ("\nRespostas:\nQuestão 01: Sua resposta foi: " + questaoum + ".")
                             message["data"] = mensagem.encode("utf-8")
                             message["header"] = f"{len(message):<{HEADER_LENGTH}}".encode("utf-8")      
                             client_socket.send(user["header"] + user["data"] + message["header"] + message["data"]) 
 
                             if questaoum == "b" or questaoum == "B":
-                                mensagem = ("Você acertou. Parabêns! \nDigite <ok> para continuar.")
+                                mensagem = ("\nVocê acertou. Parabéns! \nDigite <ok> para continuar.")
                                 message["data"] = mensagem.encode("utf-8")
                                 message["header"] = f"{len(message):<{HEADER_LENGTH}}".encode("utf-8")      
                                 client_socket.send(user["header"] + user["data"] + message["header"] + message["data"]) 
                             
                             else:
-                                mensagem = ("Resposta errada.\nA alternativa correta era b) Hardware.\nDigite <ok> para continuar.")
+                                mensagem = ("\nResposta errada.\nA alternativa correta era b) Hardware.\nDigite <ok> para continuar.")
                                 message["data"] = mensagem.encode("utf-8")
                                 message["header"] = f"{len(message):<{HEADER_LENGTH}}".encode("utf-8")      
                                 client_socket.send(user["header"] + user["data"] + message["header"] + message["data"]) 
                           
                         elif STEP == 4:
 
-                            mensagem = ("Questão 02: Sua resposta foi: " + questaodois + ".")
+                            mensagem = ("\nQuestão 02: Sua resposta foi: " + questaodois + ".")
                             message["data"] = mensagem.encode("utf-8")
                             message["header"] = f"{len(message):<{HEADER_LENGTH}}".encode("utf-8")      
                             client_socket.send(user["header"] + user["data"] + message["header"] + message["data"]) 
 
                             if questaodois == "a" or questaodois == "A":
-                                mensagem = ("Você acertou. Parabêns!")
+                                mensagem = ("\nVocê acertou. Parabéns!")
                                 message["data"] = mensagem.encode("utf-8")
                                 message["header"] = f"{len(message):<{HEADER_LENGTH}}".encode("utf-8")      
                                 client_socket.send(user["header"] + user["data"] + message["header"] + message["data"]) 
                             
                             else:
-                                mensagem = ("Resposta errada. \nA alternativa correta era a) Bit.")
+                                mensagem = ("\nResposta errada. \nA alternativa correta era a) Bit.")
                                 message["data"] = mensagem.encode("utf-8")
                                 message["header"] = f"{len(message):<{HEADER_LENGTH}}".encode("utf-8")      
                                 client_socket.send(user["header"] + user["data"] + message["header"] + message["data"]) 

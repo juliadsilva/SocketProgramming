@@ -1,5 +1,5 @@
 #!/usr/bin/env  python
-#Programa de chat para atendimento de uma pizzaria - Cliente
+#Programa para realizar teste de multipla escolha - Cliente
 #Julia Daniele Moreira - 1714
 
 import socket
@@ -69,7 +69,7 @@ class Reciever(Thread):
                     message_length = 10000 #tamanho da msg recebida
                     message = client_socket.recv(message_length).decode('utf-8')
 
-                    #Mostrando a mensagem com o nome do servidor
+                    #Mostrando a mensagem
                     print(f'{message}')
 
             except IOError as e:
